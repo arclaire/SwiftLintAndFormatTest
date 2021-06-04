@@ -58,39 +58,40 @@ class DataManager {
 		return str
 	}
 
-    private func keyLoad(key: String) -> Data? {
-        let query = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: kCFBooleanTrue!,
-            kSecMatchLimit as String: kSecMatchLimitOne
-        ] as [String: Any]
+	private func keyLoad(key: String) -> Data? {
+		let query = [
+			kSecClass as String: kSecClassGenericPassword,
+			kSecAttrAccount as String: key,
+			kSecReturnData as String: kCFBooleanTrue!,
+			kSecMatchLimit as String: kSecMatchLimitOne,
+		] as [String: Any]
 
-        var dataTypeRef: AnyObject?
+		var dataTypeRef: AnyObject?
 
-        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+		let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
 
-        if status == noErr {
-            if let data = dataTypeRef as? Data {
-                return data
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
-    }
+		if status == noErr {
+			if let data = dataTypeRef as? Data {
+				return data
+			} else {
+				return nil
+			}
+		} else {
+			return nil
+		}
+	}
+
 	func saveAPIKEYToKeyChain(str: String) {
-        if let data = Data(base64Encoded: str) {
-            let status = keySave(key: KEYCHAIN_APIKEY, data: data)
-            print("status: ", status)
-        }
+		if let data = Data(base64Encoded: str) {
+			let status = keySave(key: KEYCHAIN_APIKEY, data: data)
+			print("status: ", status)
+		}
 	}
 
 	func loadAPIKEY() -> String {
 		var strAPIKEY = "M6REICQY80LJ6CCT" // "9N17L75CVNEUKV3R"
 		if let receivedData = keyLoad(key: KEYCHAIN_APIKEY) {
-            let result = receivedData.base64EncodedString() // to(type: String.self)
+			let result = receivedData.base64EncodedString() // to(type: String.self)
 			strAPIKEY = result
 			print("result: ", result)
 		}
@@ -101,7 +102,7 @@ class DataManager {
 		let query = [
 			kSecClass as String: kSecClassGenericPassword as String,
 			kSecAttrAccount as String: key,
-			kSecValueData as String: data
+			kSecValueData as String: data,
 		] as [String: Any]
 
 		SecItemDelete(query as CFDictionary)

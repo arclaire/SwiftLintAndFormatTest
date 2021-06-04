@@ -12,7 +12,6 @@ struct ModelSearchResult: Codable {
 }
 
 struct ModelSymbol: Codable, Error {
-
 	enum CodingKeys: String, CodingKey {
 		case symbol = "1. symbol"
 		case name = "2. name"
@@ -20,10 +19,10 @@ struct ModelSymbol: Codable, Error {
 		case currency = "8. currency"
 	}
 
-    var symbol: String?
-    var name: String?
-    var type: String?
-    var currency: String?
+	var symbol: String?
+	var name: String?
+	var type: String?
+	var currency: String?
 }
 
 struct ModelSymbolDetail: Codable, Error {
@@ -33,10 +32,10 @@ struct ModelSymbolDetail: Codable, Error {
 		case low = "3. low"
 	}
 
-    var open: String? // Double?
-    var high: String?
-    var low: String?
-    var strDate: String?
+	var open: String? // Double?
+	var high: String?
+	var low: String?
+	var strDate: String?
 
 	func formatDate() -> String {
 		let format = DateFormatter()

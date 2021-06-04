@@ -139,24 +139,24 @@ class VCScreen1: UIViewController {
 	}
 
 	@objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo: NSDictionary = notification.userInfo as NSDictionary? else {
-            return
-        }
+		guard let userInfo: NSDictionary = notification.userInfo as NSDictionary? else {
+			return
+		}
 
-        if let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
-            let keyboardSize = keyboardInfo.cgRectValue.size
-            // let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 30, right: 0)
-            consTableBottomToSuperview.constant = -keyboardSize.height
-        }
+		if let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
+			let keyboardSize = keyboardInfo.cgRectValue.size
+			// let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 30, right: 0)
+			consTableBottomToSuperview.constant = -keyboardSize.height
+		}
 	}
 
 	@objc func keyboardWillHide(notification _: NSNotification) {
 		consTableBottomToSuperview.constant = 0
 	}
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+	deinit {
+		NotificationCenter.default.removeObserver(self)
+	}
 }
 
 extension VCScreen1: UISearchBarDelegate {
@@ -201,36 +201,36 @@ extension VCScreen1: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if tableView == table {
-
-            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CellTableSingleInfo.self)) as? CellTableSingleInfo {
-			if let data = presenter?.arrModel[indexPath.row] {
-				cell.displayData(data: data)
-                return cell
+			if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CellTableSingleInfo.self)) as? CellTableSingleInfo {
+				if let data = presenter?.arrModel[indexPath.row] {
+					cell.displayData(data: data)
+					return cell
+				}
 			}
-            }
-        } else {
+		} else {
 			if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CellTableSearchSymbol.self)) as?
-                CellTableSearchSymbol {
-			if let data = presenter?.arrSymbol.bestMatches {
-				cell.displayData(data: data[indexPath.row])
-			}
+				CellTableSearchSymbol
+			{
+				if let data = presenter?.arrSymbol.bestMatches {
+					cell.displayData(data: data[indexPath.row])
+				}
 
-			return cell
-            }
+				return cell
+			}
 		}
-        return UITableViewCell()
+		return UITableViewCell()
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		// self.eventHandler?.goToDetail(index: indexPath.row)
 		if tableView == tableSearch {
 			if let data = presenter?.arrSymbol.bestMatches {
-                if let strSymbol = data[indexPath.row].symbol {
-                    print("Selected Symbol", strSymbol)
-                    presenter?.loadDataSymbolDetail(str: strSymbol) // loadSearch(str: data[indexPath.row].symbol!)
-                    searchBar.text = strSymbol
-                    searchBar.resignFirstResponder()
-                }
+				if let strSymbol = data[indexPath.row].symbol {
+					print("Selected Symbol", strSymbol)
+					presenter?.loadDataSymbolDetail(str: strSymbol) // loadSearch(str: data[indexPath.row].symbol!)
+					searchBar.text = strSymbol
+					searchBar.resignFirstResponder()
+				}
 			}
 		}
 	}

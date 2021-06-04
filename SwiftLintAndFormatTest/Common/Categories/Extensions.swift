@@ -101,18 +101,18 @@ extension Date {
 	func getDate(dayDifference: Int) -> Date? {
 		var components = DateComponents()
 		components.day = dayDifference
-        guard let date = Calendar.current.date(byAdding: components, to: startOfDay) else {
-            return nil
-        }
-        return date
+		guard let date = Calendar.current.date(byAdding: components, to: startOfDay) else {
+			return nil
+		}
+		return date
 	}
 
 	func getDatebyHour(dayDifference: Int) -> Date? {
 		var components = DateComponents()
 		components.hour = dayDifference
-        guard let date = Calendar.current.date(byAdding: components, to: startOfDay) else {
-            return nil
-        }
+		guard let date = Calendar.current.date(byAdding: components, to: startOfDay) else {
+			return nil
+		}
 		return date
 	}
 }

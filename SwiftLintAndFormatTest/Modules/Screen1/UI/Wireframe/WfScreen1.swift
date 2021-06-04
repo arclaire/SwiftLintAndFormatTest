@@ -17,13 +17,13 @@ class WfScreen1: NSObject {
 
 	func initiateVC() -> VCScreen1 {
 		let storyboard = UIStoryboard.getMainStoryboard()
-        if let viewController = storyboard.instantiateViewController(withIdentifier: ID_VC_SCREEN1) as? VCScreen1 {
-            viewController.presenter = presenter
-            presenter?.vc = viewController
-            vc = viewController
-            return viewController
-        }
-        return VCScreen1()
+		if let viewController = storyboard.instantiateViewController(withIdentifier: ID_VC_SCREEN1) as? VCScreen1 {
+			viewController.presenter = presenter
+			presenter?.vc = viewController
+			vc = viewController
+			return viewController
+		}
+		return VCScreen1()
 	}
 
 	func presentVCToWindow(_ window: UIWindow) {
@@ -31,24 +31,22 @@ class WfScreen1: NSObject {
 		wfRoot?.showRootViewController(viewController, inWindow: window)
 	}
 
-	func navigateToScreen2(model1 _: [ModelSymbolDetail]) {
-	}
+	func navigateToScreen2(model1 _: [ModelSymbolDetail]) {}
 
-	func navigateToScreen3() {
-	}
+	func navigateToScreen3() {}
 
 	func displayAlert(title: String? = nil, message: String? = nil) {
 		var titleString = "Error"
 		var messageString = message
 		guard let strTitle = title else {
-            return
+			return
 		}
-        guard let strmessage = message else {
-           return
-        }
+		guard let strmessage = message else {
+			return
+		}
 
-        titleString = strTitle
-        messageString = strmessage
+		titleString = strTitle
+		messageString = strmessage
 
 		let alertController = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
