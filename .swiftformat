@@ -2,7 +2,7 @@
 # format options
 --allman false
 --binarygrouping 4,8
---commas always
+--commas inline
 --comments indent
 --decimalgrouping 3,6
 --elseposition same-line
@@ -10,7 +10,6 @@
 --exponentcase lowercase
 --exponentgrouping disabled
 --fractiongrouping disabled
---header ignore
 --hexgrouping 4,8
 --hexliteralcase uppercase
 --ifdef indent
@@ -23,14 +22,15 @@
 --operatorfunc spaced
 --patternlet hoist
 --ranges spaced
---self remove
 --semicolons inline
 --stripunusedargs always
 --swiftversion 4.2
 --trimwhitespace always
---wraparguments preserve
 --wrapcollections preserve
 --wraparguments before-first
+--header ignore
+
+##--header "{file}\nCopyright (c) {year} AIA"
 
 # file options
 

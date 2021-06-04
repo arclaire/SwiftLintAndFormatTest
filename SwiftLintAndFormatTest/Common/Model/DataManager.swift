@@ -63,7 +63,7 @@ class DataManager {
 			kSecClass as String: kSecClassGenericPassword,
 			kSecAttrAccount as String: key,
 			kSecReturnData as String: kCFBooleanTrue!,
-			kSecMatchLimit as String: kSecMatchLimitOne,
+			kSecMatchLimit as String: kSecMatchLimitOne
 		] as [String: Any]
 
 		var dataTypeRef: AnyObject?
@@ -102,7 +102,7 @@ class DataManager {
 		let query = [
 			kSecClass as String: kSecClassGenericPassword as String,
 			kSecAttrAccount as String: key,
-			kSecValueData as String: data,
+			kSecValueData as String: data
 		] as [String: Any]
 
 		SecItemDelete(query as CFDictionary)

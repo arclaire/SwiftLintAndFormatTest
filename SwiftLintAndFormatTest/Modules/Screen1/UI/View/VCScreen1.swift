@@ -30,6 +30,12 @@ class VCScreen1: UIViewController {
 		registerKeyboardNotifications()
 		setupTableView()
 		presenter?.loadDataSymbolDetail(str: "IBM")
+
+		let array = [
+			"a",
+			"b",
+			"c", "d"
+		]
 		// Do any additional setup after loading the view.
 	}
 
